@@ -2,16 +2,16 @@ import java.util.Scanner;
 
 public class Battleships {
     Scanner scanner = new Scanner(System.in);
-    public static int numRows = 12;
+    public static int numRows = 12;//change the number of rows or cols to change how the map grid looks.
     public static int numCols = 12;
     public static int playerShips;
     public static int compShips;
     public static String[][] grid = new String[numRows][numCols];
     public static int[][] missedGuesses = new int[numRows][numCols];
-
+    //creates the 
     public static void main(String[] args) {
         System.out.println("***** Welcome to Battleship ******");
-        System.out.println("The sea is empty of vessels, lets set sail");
+        System.out.println("The sea is empty of ships, lets make a change to that");
 
         createOcean();
         deployPlayerShips();
@@ -23,7 +23,7 @@ public class Battleships {
 
         gameOver();
     }
-
+    //creates the ocean 
     public static void createOcean() {
         System.out.print("  ");
         for (int i = 0; i < numCols; i++) {
@@ -51,7 +51,7 @@ public class Battleships {
         }
         System.out.println();
     }
-
+    //can change the number of ships that player has by editing the number
     public static void deployPlayerShips() {
         Scanner input = new Scanner(System.in);
 
@@ -68,14 +68,14 @@ public class Battleships {
                 grid[x][y] = "@";
                 i++;
             } else if (grid[x][y].equals("@")) {
-                System.out.println("You already have a ship on this grid spot, only 1 ship per location.");
+                System.out.println("Only 1 ship per a grid square, enter another location please.");
             } else {
-                System.out.println("Invalid placement, keep ships within the grid.");
+                System.out.println("That placement is outside of the grid, please enter a new set of coordinates.");
             }
         }
         printOceanMap();
     }
-
+    //can change the number of ships that comp has by editing the number
     public static void deployCompShips() {
         System.out.println("\nComputer is deploying their ships");
         compShips = 5;
@@ -92,7 +92,7 @@ public class Battleships {
         }
         printOceanMap();
     }
-
+    //battle screen
     public static void Battle() {
         playerTurn();
         computerTurn();
@@ -100,7 +100,7 @@ public class Battleships {
 
         System.out.println("Your ships: " + playerShips + " | Computer ships: " + compShips);
     }
-
+    //player turn to fire
     public static void playerTurn() {
         System.out.println("\nYour Turn");
         Scanner input = new Scanner(System.in);
@@ -118,20 +118,20 @@ public class Battleships {
                     grid[x][y] = "!";
                     compShips--;
                 } else if (grid[x][y].equals("@")) {
-                    System.out.println("You hit your own ship!");
+                    System.out.println("You hit your own ship, how did you manage that!");
                     grid[x][y] = "x";
                     playerShips--;
                     compShips++;
                 } else {
-                    System.out.println("Missed shot.");
+                    System.out.println("Missed shot, reload and try again.");
                     grid[x][y] = "-";
                 }
             } else {
-                System.out.println("Invalid coordinates. Try again.");
+                System.out.println("Our main guns cannot fire that far. Try again.");
             }
         } while (x < 0 || x >= numRows || y < 0 || y >= numCols);
     }
-
+    //comp turn
     public static void computerTurn() {
         System.out.println("\nComputer's Turn");
         int x, y;
@@ -147,7 +147,7 @@ public class Battleships {
                     playerShips--;
                     compShips++;
                 } else if (grid[x][y].equals("x")) {
-                    System.out.println("The enemy hit their own ship!");
+                    System.out.println("The enemy miss fired and hit their own ship!");
                     grid[x][y] = "!";
                 } else {
                     System.out.println("Computer missed.");
@@ -156,16 +156,16 @@ public class Battleships {
             }
         } while (x < 0 || x >= numRows || y < 0 || y >= numCols);
     }
-
+    //ending results
     public static void gameOver() {
         System.out.println("Your ships: " + playerShips + " | Computer Ships: " + compShips);
         if (playerShips > 0 && compShips <= 0) {
-            System.out.println("Hooray! You won the battle.");
+            System.out.println("Victory, you came out on top.");
         } else {
-            System.out.println("Sorry, you lost the battle.");
+            System.out.println("Defeat, better luck next time.");
         }
     }
-
+    //displays the grid on the console for the player to see
     public static void printOceanMap() {
         System.out.println();
         System.out.print("  ");
