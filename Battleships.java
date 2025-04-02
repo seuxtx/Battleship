@@ -68,9 +68,9 @@ public class Battleships {
                 grid[x][y] = "@";
                 i++;
             } else if (grid[x][y].equals("@")) {
-                System.out.println("Only 1 ship per a grid square, enter another location please.");
+                System.out.println("Only 1 ship per a grid square, enter another location please."); //stops a user from having more than 1 ship in a spot
             } else {
-                System.out.println("That placement is outside of the grid, please enter a new set of coordinates.");
+                System.out.println("That placement is outside of the grid, please enter a new set of coordinates."); //stops a user from placing outside the map
             }
         }
         printOceanMap();
@@ -98,7 +98,7 @@ public class Battleships {
         computerTurn();
         printOceanMap();
 
-        System.out.println("Your ships: " + playerShips + " | Computer ships: " + compShips);
+        System.out.println("Your ships: " + playerShips + " | Computer ships: " + compShips); //shows how many ships you have left and the computer
     }
     //player turn to fire
     public static void playerTurn() {
@@ -111,7 +111,7 @@ public class Battleships {
             x = input.nextInt();
             System.out.print("Enter Y Coordinate: ");
             y = input.nextInt();
-
+            //hit/miss text
             if (x >= 0 && x < numRows && y >= 0 && y < numCols) {
                 if (grid[x][y].equals("x")) {
                     System.out.println("Enemy Ship has been foundered.");
@@ -139,7 +139,7 @@ public class Battleships {
         do {
             x = (int) (Math.random() * 12);
             y = (int) (Math.random() * 12);
-
+            //hit/miss text
             if (x >= 0 && x < numRows && y >= 0 && y < numCols) {
                 if (grid[x][y].equals("@")) {
                     System.out.println("The enemy sank one of your ships.");
